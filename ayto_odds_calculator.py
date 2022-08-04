@@ -52,9 +52,9 @@ def split_truth_booths(df):
     true_truth_booths=[]
     for _, truth_booth in df.iterrows():
         if truth_booth['Match?']=='No':
-            false_truth_booths.append((truth_booth.Woman, truth_booth.Man))
+            false_truth_booths.append((truth_booth['Group 2'], truth_booth['Group 1']))
         elif truth_booth['Match?']=='Yes':
-            true_truth_booths.append((truth_booth.Woman, truth_booth.Man))
+            true_truth_booths.append((truth_booth['Group 2'], truth_booth['Group 1']))
         else:
             print("Truth Booth tab error")
     return false_truth_booths, true_truth_booths
@@ -64,7 +64,7 @@ def convert_night_df(nights_df, true_truth_booths):
     [[list of pairs as tuples], number of lights, number of perfect matches present]"""
     night_data=[]
     for name, night in nights_df.iteritems():
-        if name=='Men':
+        if name=='Group 1':
             men_night = list(night[:-1])
         else:
             women_night = list(night[:-1])
